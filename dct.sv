@@ -21,7 +21,7 @@
 
 
 
-module calc(
+module dct(
 	input CLOCK,
 	input RESET,
 	input INPUT_DATA_ENABLE,

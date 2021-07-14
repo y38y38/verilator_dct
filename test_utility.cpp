@@ -12,18 +12,17 @@ FILE *in;
 FILE *out;
 
 void posedge_clock_result(Vwrapper *dut){
-	if (dut->OUTPUT_DATA_ENABLE != 0) {
-		static int first = 1;
-		if (first) {
-			int i,j;
-			for(i=0;i<8;i++) {
-				for(j=0;j<8;j++) {
-					fprintf(out, "%d\n", dut->OUTPUT_DATA[i][j]);
-				}
+	static int first = 1;
+	if (first==11) {
+		int i,j;
+		for(i=0;i<8;i++) {
+			for(j=0;j<8;j++) {
+				fprintf(out, "%d ", dut->OUTPUT_DATA[i][j]);
+//			printf( "%d %d\n", first, dut->OUTPUT_DATA[i][j]);
 			}
-			first = 0;
 		}
 	}
+		first++;
 }
 
 void posedge_clock(Vwrapper *dut){
@@ -33,7 +32,21 @@ void posedge_clock(Vwrapper *dut){
 			dut->INPUT_DATA[i][j] = org[(i*8)+j];
 			}
 	}
-	dut->INPUT_DATA_ENABLE=1;
+	#if 0
+		static int first =1;
+		if (first) {
+		int i,j;
+		for(i=0;i<8;i++) {
+			for(j=0;j<8;j++) {
+				printf("%d ", dut->INPUT_DATA[i][j]);
+
+			}
+		}
+		printf("\n");
+		first=0;
+		}
+		#endif
+
 }
 
 

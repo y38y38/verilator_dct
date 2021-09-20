@@ -13,7 +13,7 @@ FILE *out;
 
 void posedge_clock_result(Vwrapper *dut){
 	static int first = 1;
-	if (first==11) {
+	if ((first>=8) &&(first<=12)){
 		int i,j;
 		for(i=0;i<8;i++) {
 			for(j=0;j<8;j++) {
@@ -21,6 +21,7 @@ void posedge_clock_result(Vwrapper *dut){
 //			printf( "%d %d\n", first, dut->OUTPUT_DATA[i][j]);
 			}
 		}
+		fprintf(out, "\n");
 	}
 		first++;
 }
